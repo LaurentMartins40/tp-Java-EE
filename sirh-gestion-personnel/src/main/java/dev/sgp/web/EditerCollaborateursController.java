@@ -17,20 +17,20 @@ public class EditerCollaborateursController extends HttpServlet {
 		String prenom=req.getParameter("prenom");
 		
 		if(matricule==null||titre==null||nom==null||prenom==null){
-			resp.getWriter().write("<h1> les elements manquants sont les suivants : </h1>");
+			String errorReponse = "les elements manquants sont : ";
 			if(matricule==null){
-				resp.getWriter().write("<h2> un matricule</h2>");
+				errorReponse = errorReponse + " un matricule";
 			}
 			if(titre==null){
-				resp.getWriter().write("<h2> un titre</h2>");
+				errorReponse = errorReponse +" un titre";
 			}
 			if(nom==null){
-				resp.getWriter().write("<h2> un nom</h2>");
+				errorReponse = errorReponse +" un nom";
 			}
 			if(prenom==null){
-				resp.getWriter().write("<h2> un prenom</h2>");
+				errorReponse = errorReponse + " un prenom";
 			}
-			
+			resp.sendError(400, errorReponse);
 		}else{
 			resp.setContentType("text/html");
 			// code HTML ecrit dans le corps de la reponse
